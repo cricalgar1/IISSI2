@@ -1,0 +1,60 @@
+{
+    "getAll": {
+        "route": "/usuariosaficiones",
+        "method": "GET",
+        "sql": "SELECT * FROM usuariosaficiones",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all usuariosaficiones"
+    },
+    "getById": {
+        "route": "/usuariosaficiones/$usuarioAficionId",
+        "method": "GET",
+        "sql": "SELECT * FROM usuariosaficiones WHERE usuarioAficionId = $usuarioAficionId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'usuariosaficiones' by its primary key"
+    },
+    "create": {
+        "route": "/usuariosaficiones",
+        "method": "POST",
+        "sql": "INSERT INTO usuariosaficiones(usuarioId, aficionId) VALUES ($usuarioId, $aficionId)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'usuariosaficiones'",
+        "request_body_params": [
+            "usuarioId",
+            "aficionId"
+        ]
+    },
+    "update": {
+        "route": "/usuariosaficiones/$usuarioAficionId",
+        "method": "PUT",
+        "sql": "UPDATE usuariosaficiones SET usuarioId = $usuarioId, aficionId = $aficionId WHERE usuarioAficionId = $usuarioAficionId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'usuariosaficiones' by its primary key",
+        "request_body_params": [
+            "usuarioId",
+            "aficionId"
+        ]
+    },
+    "delete": {
+        "route": "/usuariosaficiones/$usuarioAficionId",
+        "method": "DELETE",
+        "sql": "DELETE FROM usuariosaficiones WHERE usuarioAficionId = $usuarioAficionId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'usuariosaficiones' by its primary key"
+    }
+}

@@ -1,0 +1,89 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/login.js" type="module"></script>
+    <script src="js/libs/axios.min.js"></script>
+    <script src="/js/libs/bootstrap.min.js"></script>
+    <script src="/js/utils/include.js"></script>
+    <title>IISSI-Friends</title>
+    
+    <link rel="icon" href="images\abrazo.png"></link>
+
+    <style>
+        .btn1 {
+            border: none;
+            outline: none;
+            height: 50px;
+            width: 100%;
+            background-color: #0d6efd;
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn1:hover {
+            background-color:#0b5ed7;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="errors"></div>
+    <section class="bg-light text-dark p-5 text-center text-sm-start">
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <div class="col-md-4">
+                    <main class="form-signin">
+                        <div>
+                            <form id="formulario">
+                                <h4>Inicio de sesión</h4>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control my-2" id="nombre" name="nombre"
+                                        placeholder="Username">
+                                    <label for="floatingInput">Username</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="password" class="form-control my-2" id="password" name="password"
+                                        placeholder="Contraseña" 
+                                        required>
+                                    <label for="floatingInput">Contraseña</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="email" class="form-control my-2" id="email" name="email"
+                                        placeholder="Email" required>
+                                    <label for="floatingInput">El email se añade solo</label>
+                                </div>
+                                <div class="form-row">
+                                    <button type="submit" class="btn1 mt-3 mb-5" id="boton_login">Login</button>
+                                </div>
+                                <a href="ajustes-html/cambiar_c_blanco.html" class="forgot">¿Olvidaste tu contraseña?</a>
+                                <p>¿No tienes una cuenta? <a href="register.html">Regístrate</a> </p>
+                            </form>
+                        </div>
+                    </main>
+                </div>
+                <img class="img-fluid w-50 d-none d-sm-block" src="images/imagenLogin.svg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+        <div class="container">
+          <p class="lead">Copyright &copy; 2022 IISSI2-FRIENDS <br> Evaluación a optar: Notable</p>
+        </div>
+    </footer>
+
+</body>
+</html>

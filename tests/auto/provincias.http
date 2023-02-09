@@ -1,0 +1,127 @@
+
+### THIS IS AN AUTO-GENERATED TEST SUITE, IT NEEDS TO BE COMPLETED WITH VALID DATA
+### THESE ARE NOT ALL YOU NEED, MORE OF THEM MUST BE CREATED TO EVALUATE THE FUNCTIONAL
+### REQUIREMENTS OF THE PROJECT AT HAND, THESE TEST ONLY TEST THE CRUD PORTION OF THE ENTITY.
+### Silence is a DEAL research team project, more info about us in https://deal.us.es
+@BASE = http://127.0.0.1:8080/api/v1
+
+### Auxiliary query
+### Positive test
+### Test 00: Get all existing provincias
+### This query is used in several of the below tests it should be executed first.
+# @name provincias
+GET {{BASE}}/provincias
+
+### Login a(n) usuarios and save the generated token 
+### This token is used in several of the below tests it should be executed second.
+# @name login
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{ 
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###
+}
+
+###
+@token = {{login.response.body.sessionToken}}
+
+
+### TESTS BEGIN
+
+### Test 01: Get one existing provincias by its id.
+### positive test 
+@proId = {{provincias.response.body.0.provinciaId}}
+GET {{BASE}}/provincias/{{proId}} 
+Content-Type: application/json 
+
+
+### Test 02: Try get one existing provincias by its nonexistent id.
+### negative test 
+GET {{BASE}}/provincias/999999999
+Content-Type: application/json 
+
+
+### Test 03: Add a new provincias successfully
+### Positive test 
+### We assume that the token has been aquired by the login request.
+# @name newprovincias
+POST {{BASE}}/provincias 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"nombreProvincia": ###REPLACE###
+} 
+
+### Check the created provincias
+
+@newprovinciasid = {{newprovincias.response.body.lastId}}
+GET {{BASE}}/provincias/{{newprovinciasid}}
+Content-Type: application/json 
+
+### Test 04: Add a new provincias without a session token
+### Negative test 
+POST {{BASE}}/provincias 
+Content-Type: application/json 
+
+{ 
+	"nombreProvincia": ###REPLACE###
+}
+
+### Test 05: Modify an existing provincias 
+### Positive test 
+@proId = {{provincias.response.body.0.provinciaId}} 
+PUT {{BASE}}/provincias/{{proId}} 
+Content-Type: application/json 
+Token: {{token}} 
+
+{ 
+	"nombreProvincia": ###REPLACE###
+}
+
+### Check the modified provincias
+
+GET {{BASE}}/provincias/{{newprovinciasid}}
+Content-Type: application/json 
+
+### Test 06: Try to modify an existing provincias without a session token
+### Negative test
+@proId = {{provincias.response.body.0.provinciaId}}
+PUT {{BASE}}/provincias/{{proId}}
+Content-Type: application/json
+
+{
+	"nombreProvincia": ###REPLACE###
+}
+
+### Test 07: Delete an existing provincias
+### Positive test
+
+### Create a new provincias, which we will delete
+# @name createdproToDelete
+POST {{BASE}}/provincias
+Content-Type: application/json
+Token: {{token}}
+
+{
+	"nombreProvincia": ###REPLACE###
+}
+
+### Check the created provincias
+@prodelId = {{createdproToDelete.response.body.lastId}}
+GET {{BASE}}/provincias/{{prodelId}}
+Content-Type: application/json 
+
+### Delete the provincias
+DELETE {{BASE}}/provincias/{{prodelId}}
+Token: {{token}}
+
+### Check the deleted provincias
+GET {{BASE}}/provincias/{{prodelId}}
+Content-Type: application/json 
+
+### Test 08: Try to delete a provincias without a session token
+### Negative test
+DELETE {{BASE}}/provincias/{{proId}}
+

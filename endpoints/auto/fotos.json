@@ -1,0 +1,68 @@
+{
+    "getAll": {
+        "route": "/fotos",
+        "method": "GET",
+        "sql": "SELECT * FROM fotos",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all fotos"
+    },
+    "getById": {
+        "route": "/fotos/$fotoId",
+        "method": "GET",
+        "sql": "SELECT * FROM fotos WHERE fotoId = $fotoId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'fotos' by its primary key"
+    },
+    "create": {
+        "route": "/fotos",
+        "method": "POST",
+        "sql": "INSERT INTO fotos(usuarioId, urlFoto, nombre, descripcion, fechaPublicacion, fotoPerfil) VALUES ($usuarioId, $urlFoto, $nombre, $descripcion, $fechaPublicacion, $fotoPerfil)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'fotos'",
+        "request_body_params": [
+            "usuarioId",
+            "urlFoto",
+            "nombre",
+            "descripcion",
+            "fechaPublicacion",
+            "fotoPerfil"
+        ]
+    },
+    "update": {
+        "route": "/fotos/$fotoId",
+        "method": "PUT",
+        "sql": "UPDATE fotos SET usuarioId = $usuarioId, urlFoto = $urlFoto, nombre = $nombre, descripcion = $descripcion, fechaPublicacion = $fechaPublicacion, fotoPerfil = $fotoPerfil WHERE fotoId = $fotoId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'fotos' by its primary key",
+        "request_body_params": [
+            "usuarioId",
+            "urlFoto",
+            "nombre",
+            "descripcion",
+            "fechaPublicacion",
+            "fotoPerfil"
+        ]
+    },
+    "delete": {
+        "route": "/fotos/$fotoId",
+        "method": "DELETE",
+        "sql": "DELETE FROM fotos WHERE fotoId = $fotoId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'fotos' by its primary key"
+    }
+}

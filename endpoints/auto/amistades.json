@@ -1,0 +1,12 @@
+{
+    "getAll": {
+        "route": "/amistades",
+        "method": "GET",
+        "sql": "SELECT * FROM amistades",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all amistades"
+    }
+}

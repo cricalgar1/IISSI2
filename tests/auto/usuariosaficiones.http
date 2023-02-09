@@ -1,0 +1,132 @@
+
+### THIS IS AN AUTO-GENERATED TEST SUITE, IT NEEDS TO BE COMPLETED WITH VALID DATA
+### THESE ARE NOT ALL YOU NEED, MORE OF THEM MUST BE CREATED TO EVALUATE THE FUNCTIONAL
+### REQUIREMENTS OF THE PROJECT AT HAND, THESE TEST ONLY TEST THE CRUD PORTION OF THE ENTITY.
+### Silence is a DEAL research team project, more info about us in https://deal.us.es
+@BASE = http://127.0.0.1:8080/api/v1
+
+### Auxiliary query
+### Positive test
+### Test 00: Get all existing usuariosaficiones
+### This query is used in several of the below tests it should be executed first.
+# @name usuariosaficiones
+GET {{BASE}}/usuariosaficiones
+
+### Login a(n) usuarios and save the generated token 
+### This token is used in several of the below tests it should be executed second.
+# @name login
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{ 
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###
+}
+
+###
+@token = {{login.response.body.sessionToken}}
+
+
+### TESTS BEGIN
+
+### Test 01: Get one existing usuariosaficiones by its id.
+### positive test 
+@usuId = {{usuariosaficiones.response.body.0.usuarioAficionId}}
+GET {{BASE}}/usuariosaficiones/{{usuId}} 
+Content-Type: application/json 
+
+
+### Test 02: Try get one existing usuariosaficiones by its nonexistent id.
+### negative test 
+GET {{BASE}}/usuariosaficiones/999999999
+Content-Type: application/json 
+
+
+### Test 03: Add a new usuariosaficiones successfully
+### Positive test 
+### We assume that the token has been aquired by the login request.
+# @name newusuariosaficiones
+POST {{BASE}}/usuariosaficiones 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"usuarioId": ###REPLACE###,
+	"aficionId": ###REPLACE###
+} 
+
+### Check the created usuariosaficiones
+
+@newusuariosaficionesid = {{newusuariosaficiones.response.body.lastId}}
+GET {{BASE}}/usuariosaficiones/{{newusuariosaficionesid}}
+Content-Type: application/json 
+
+### Test 04: Add a new usuariosaficiones without a session token
+### Negative test 
+POST {{BASE}}/usuariosaficiones 
+Content-Type: application/json 
+
+{ 
+	"usuarioId": ###REPLACE###,
+	"aficionId": ###REPLACE###
+}
+
+### Test 05: Modify an existing usuariosaficiones 
+### Positive test 
+@usuId = {{usuariosaficiones.response.body.0.usuarioAficionId}} 
+PUT {{BASE}}/usuariosaficiones/{{usuId}} 
+Content-Type: application/json 
+Token: {{token}} 
+
+{ 
+	"usuarioId": ###REPLACE###,
+	"aficionId": ###REPLACE###
+}
+
+### Check the modified usuariosaficiones
+
+GET {{BASE}}/usuariosaficiones/{{newusuariosaficionesid}}
+Content-Type: application/json 
+
+### Test 06: Try to modify an existing usuariosaficiones without a session token
+### Negative test
+@usuId = {{usuariosaficiones.response.body.0.usuarioAficionId}}
+PUT {{BASE}}/usuariosaficiones/{{usuId}}
+Content-Type: application/json
+
+{
+	"usuarioId": ###REPLACE###,
+	"aficionId": ###REPLACE###
+}
+
+### Test 07: Delete an existing usuariosaficiones
+### Positive test
+
+### Create a new usuariosaficiones, which we will delete
+# @name createdusuToDelete
+POST {{BASE}}/usuariosaficiones
+Content-Type: application/json
+Token: {{token}}
+
+{
+	"usuarioId": ###REPLACE###,
+	"aficionId": ###REPLACE###
+}
+
+### Check the created usuariosaficiones
+@usudelId = {{createdusuToDelete.response.body.lastId}}
+GET {{BASE}}/usuariosaficiones/{{usudelId}}
+Content-Type: application/json 
+
+### Delete the usuariosaficiones
+DELETE {{BASE}}/usuariosaficiones/{{usudelId}}
+Token: {{token}}
+
+### Check the deleted usuariosaficiones
+GET {{BASE}}/usuariosaficiones/{{usudelId}}
+Content-Type: application/json 
+
+### Test 08: Try to delete a usuariosaficiones without a session token
+### Negative test
+DELETE {{BASE}}/usuariosaficiones/{{usuId}}
+

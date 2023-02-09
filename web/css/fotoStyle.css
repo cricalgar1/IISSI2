@@ -1,0 +1,36 @@
+A:link {
+    text-decoration: none
+}
+
+A:visited {
+    color: black
+}
+
+.iniciaSesion:visited {
+    color: white
+}
+
+A:hover {
+    color: black
+}
+
+.iniciaSesion:hover {
+    color: white
+}
+
+* {
+    outline: none !important;
+}
+
+.scroll-desc {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    transform: scale(1.05);
+}

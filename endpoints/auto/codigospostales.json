@@ -1,0 +1,60 @@
+{
+    "getAll": {
+        "route": "/codigospostales",
+        "method": "GET",
+        "sql": "SELECT * FROM codigospostales",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all codigospostales"
+    },
+    "getById": {
+        "route": "/codigospostales/$codigoPostalId",
+        "method": "GET",
+        "sql": "SELECT * FROM codigospostales WHERE codigoPostalId = $codigoPostalId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'codigospostales' by its primary key"
+    },
+    "create": {
+        "route": "/codigospostales",
+        "method": "POST",
+        "sql": "INSERT INTO codigospostales(municipioId, codigoPostal) VALUES ($municipioId, $codigoPostal)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'codigospostales'",
+        "request_body_params": [
+            "municipioId",
+            "codigoPostal"
+        ]
+    },
+    "update": {
+        "route": "/codigospostales/$codigoPostalId",
+        "method": "PUT",
+        "sql": "UPDATE codigospostales SET municipioId = $municipioId, codigoPostal = $codigoPostal WHERE codigoPostalId = $codigoPostalId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'codigospostales' by its primary key",
+        "request_body_params": [
+            "municipioId",
+            "codigoPostal"
+        ]
+    },
+    "delete": {
+        "route": "/codigospostales/$codigoPostalId",
+        "method": "DELETE",
+        "sql": "DELETE FROM codigospostales WHERE codigoPostalId = $codigoPostalId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'codigospostales' by its primary key"
+    }
+}

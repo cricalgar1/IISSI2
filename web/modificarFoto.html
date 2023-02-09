@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/fotoStyle.css">
+
+    <script src="/js/libs/bootstrap.min.js"></script>
+    <script src="js/utils/include.js"></script>
+
+    <script src="/web/js/modificarFoto.js" type="module"></script>
+    <script src="js/libs/axios.min.js"></script>
+
+    <title>IISSI-Friends</title>
+
+    <link rel="icon" href="images\abrazo.png">
+    </link>
+</head>
+
+<body>
+
+    <section class="bg-light text-dark p-5 text-center text-sm-start">
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <h3>Edite la publicación</h3>
+                    </div>
+                    <div id="errors"></div>
+                    <main class="form-signin">
+                        <div>
+                            <form method="post" id="formulario">
+                                <div class="card h-100" id="foto">
+                                    
+                                </div>
+                            </form>
+                        </div>
+                    </main>
+                </div>
+                <img class="img-fluid w-50 d-none d-sm-block" src="images/modificarFoto.svg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+        <div class="container">
+          <p class="lead">Copyright &copy; 2022 IISSI2-FRIENDS <br> Evaluación a optar: Notable</p>
+        </div>
+    </footer>       
+
+</body>
+</html>

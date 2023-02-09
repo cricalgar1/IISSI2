@@ -1,0 +1,202 @@
+
+### THIS IS AN AUTO-GENERATED TEST SUITE, IT NEEDS TO BE COMPLETED WITH VALID DATA
+### THESE ARE NOT ALL YOU NEED, MORE OF THEM MUST BE CREATED TO EVALUATE THE FUNCTIONAL
+### REQUIREMENTS OF THE PROJECT AT HAND, THESE TEST ONLY TEST THE CRUD PORTION OF THE ENTITY.
+### Silence is a DEAL research team project, more info about us in https://deal.us.es
+@BASE = http://127.0.0.1:8080/api/v1
+
+### Auxiliary query
+### Positive test
+### Test 00: Get all existing usuarios
+### This query is used in several of the below tests it should be executed first.
+# @name usuarios
+GET {{BASE}}/usuarios
+
+### Login a(n) usuarios and save the generated token 
+### This token is used in several of the below tests it should be executed second.
+# @name login
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{ 
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###
+}
+
+###
+@token = {{login.response.body.sessionToken}}
+
+
+### TESTS BEGIN
+
+### Test 01: Get one existing usuarios by its id.
+### positive test 
+@usuId = {{usuarios.response.body.0.usuarioId}}
+GET {{BASE}}/usuarios/{{usuId}} 
+Content-Type: application/json 
+
+
+### Test 02: Try get one existing usuarios by its nonexistent id.
+### negative test 
+GET {{BASE}}/usuarios/999999999
+Content-Type: application/json 
+
+
+### Test 03: Add a new usuarios successfully
+### Positive test 
+### We assume that the token has been aquired by the login request.
+# @name newusuarios
+POST {{BASE}}/usuarios 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###,
+	"nombre": ###REPLACE###,
+	"fechaNacimiento": ###REPLACE###,
+	"altura": ###REPLACE###,
+	"peso": ###REPLACE###,
+	"genero": ###REPLACE###,
+	"colorOjos": ###REPLACE###,
+	"colorPelo": ###REPLACE###,
+	"fechaAlta": ###REPLACE###,
+	"fechaBaja": ###REPLACE###,
+	"biografia": ###REPLACE###,
+	"direccion": ###REPLACE###,
+	"codigoPostalId": ###REPLACE###,
+	"provinciaId": ###REPLACE###,
+	"municipioId": ###REPLACE###
+} 
+
+### Check the created usuarios
+
+@newusuariosid = {{newusuarios.response.body.lastId}}
+GET {{BASE}}/usuarios/{{newusuariosid}}
+Content-Type: application/json 
+
+### Test 04: Add a new usuarios without a session token
+### Negative test 
+POST {{BASE}}/usuarios 
+Content-Type: application/json 
+
+{ 
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###,
+	"nombre": ###REPLACE###,
+	"fechaNacimiento": ###REPLACE###,
+	"altura": ###REPLACE###,
+	"peso": ###REPLACE###,
+	"genero": ###REPLACE###,
+	"colorOjos": ###REPLACE###,
+	"colorPelo": ###REPLACE###,
+	"fechaAlta": ###REPLACE###,
+	"fechaBaja": ###REPLACE###,
+	"biografia": ###REPLACE###,
+	"direccion": ###REPLACE###,
+	"codigoPostalId": ###REPLACE###,
+	"provinciaId": ###REPLACE###,
+	"municipioId": ###REPLACE###
+}
+
+### Test 05: Modify an existing usuarios 
+### Positive test 
+@usuId = {{usuarios.response.body.0.usuarioId}} 
+PUT {{BASE}}/usuarios/{{usuId}} 
+Content-Type: application/json 
+Token: {{token}} 
+
+{ 
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###,
+	"nombre": ###REPLACE###,
+	"fechaNacimiento": ###REPLACE###,
+	"altura": ###REPLACE###,
+	"peso": ###REPLACE###,
+	"genero": ###REPLACE###,
+	"colorOjos": ###REPLACE###,
+	"colorPelo": ###REPLACE###,
+	"fechaAlta": ###REPLACE###,
+	"fechaBaja": ###REPLACE###,
+	"biografia": ###REPLACE###,
+	"direccion": ###REPLACE###,
+	"codigoPostalId": ###REPLACE###,
+	"provinciaId": ###REPLACE###,
+	"municipioId": ###REPLACE###
+}
+
+### Check the modified usuarios
+
+GET {{BASE}}/usuarios/{{newusuariosid}}
+Content-Type: application/json 
+
+### Test 06: Try to modify an existing usuarios without a session token
+### Negative test
+@usuId = {{usuarios.response.body.0.usuarioId}}
+PUT {{BASE}}/usuarios/{{usuId}}
+Content-Type: application/json
+
+{
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###,
+	"nombre": ###REPLACE###,
+	"fechaNacimiento": ###REPLACE###,
+	"altura": ###REPLACE###,
+	"peso": ###REPLACE###,
+	"genero": ###REPLACE###,
+	"colorOjos": ###REPLACE###,
+	"colorPelo": ###REPLACE###,
+	"fechaAlta": ###REPLACE###,
+	"fechaBaja": ###REPLACE###,
+	"biografia": ###REPLACE###,
+	"direccion": ###REPLACE###,
+	"codigoPostalId": ###REPLACE###,
+	"provinciaId": ###REPLACE###,
+	"municipioId": ###REPLACE###
+}
+
+### Test 07: Delete an existing usuarios
+### Positive test
+
+### Create a new usuarios, which we will delete
+# @name createdusuToDelete
+POST {{BASE}}/usuarios
+Content-Type: application/json
+Token: {{token}}
+
+{
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###,
+	"nombre": ###REPLACE###,
+	"fechaNacimiento": ###REPLACE###,
+	"altura": ###REPLACE###,
+	"peso": ###REPLACE###,
+	"genero": ###REPLACE###,
+	"colorOjos": ###REPLACE###,
+	"colorPelo": ###REPLACE###,
+	"fechaAlta": ###REPLACE###,
+	"fechaBaja": ###REPLACE###,
+	"biografia": ###REPLACE###,
+	"direccion": ###REPLACE###,
+	"codigoPostalId": ###REPLACE###,
+	"provinciaId": ###REPLACE###,
+	"municipioId": ###REPLACE###
+}
+
+### Check the created usuarios
+@usudelId = {{createdusuToDelete.response.body.lastId}}
+GET {{BASE}}/usuarios/{{usudelId}}
+Content-Type: application/json 
+
+### Delete the usuarios
+DELETE {{BASE}}/usuarios/{{usudelId}}
+Token: {{token}}
+
+### Check the deleted usuarios
+GET {{BASE}}/usuarios/{{usudelId}}
+Content-Type: application/json 
+
+### Test 08: Try to delete a usuarios without a session token
+### Negative test
+DELETE {{BASE}}/usuarios/{{usuId}}
+

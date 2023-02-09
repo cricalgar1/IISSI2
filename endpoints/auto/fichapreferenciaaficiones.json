@@ -1,0 +1,60 @@
+{
+    "getAll": {
+        "route": "/fichapreferenciaaficiones",
+        "method": "GET",
+        "sql": "SELECT * FROM fichapreferenciaaficiones",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all fichapreferenciaaficiones"
+    },
+    "getById": {
+        "route": "/fichapreferenciaaficiones/$fichaPreferenciaAficionId",
+        "method": "GET",
+        "sql": "SELECT * FROM fichapreferenciaaficiones WHERE fichaPreferenciaAficionId = $fichaPreferenciaAficionId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'fichapreferenciaaficiones' by its primary key"
+    },
+    "create": {
+        "route": "/fichapreferenciaaficiones",
+        "method": "POST",
+        "sql": "INSERT INTO fichapreferenciaaficiones(fichaPreferenciaid, aficionId) VALUES ($fichaPreferenciaid, $aficionId)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'fichapreferenciaaficiones'",
+        "request_body_params": [
+            "fichaPreferenciaid",
+            "aficionId"
+        ]
+    },
+    "update": {
+        "route": "/fichapreferenciaaficiones/$fichaPreferenciaAficionId",
+        "method": "PUT",
+        "sql": "UPDATE fichapreferenciaaficiones SET fichaPreferenciaid = $fichaPreferenciaid, aficionId = $aficionId WHERE fichaPreferenciaAficionId = $fichaPreferenciaAficionId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'fichapreferenciaaficiones' by its primary key",
+        "request_body_params": [
+            "fichaPreferenciaid",
+            "aficionId"
+        ]
+    },
+    "delete": {
+        "route": "/fichapreferenciaaficiones/$fichaPreferenciaAficionId",
+        "method": "DELETE",
+        "sql": "DELETE FROM fichapreferenciaaficiones WHERE fichaPreferenciaAficionId = $fichaPreferenciaAficionId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'fichapreferenciaaficiones' by its primary key"
+    }
+}

@@ -1,0 +1,88 @@
+{
+    "getAll": {
+        "route": "/usuarios",
+        "method": "GET",
+        "sql": "SELECT * FROM usuarios",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all usuarios"
+    },
+    "getById": {
+        "route": "/usuarios/$usuarioId",
+        "method": "GET",
+        "sql": "SELECT * FROM usuarios WHERE usuarioId = $usuarioId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'usuarios' by its primary key"
+    },
+    "create": {
+        "route": "/usuarios",
+        "method": "POST",
+        "sql": "INSERT INTO usuarios(email, PASSWORD, nombre, fechaNacimiento, altura, peso, genero, colorOjos, colorPelo, fechaAlta, fechaBaja, biografia, direccion, codigoPostalId, provinciaId, municipioId) VALUES ($email, $PASSWORD, $nombre, $fechaNacimiento, $altura, $peso, $genero, $colorOjos, $colorPelo, $fechaAlta, $fechaBaja, $biografia, $direccion, $codigoPostalId, $provinciaId, $municipioId)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'usuarios'",
+        "request_body_params": [
+            "email",
+            "PASSWORD",
+            "nombre",
+            "fechaNacimiento",
+            "altura",
+            "peso",
+            "genero",
+            "colorOjos",
+            "colorPelo",
+            "fechaAlta",
+            "fechaBaja",
+            "biografia",
+            "direccion",
+            "codigoPostalId",
+            "provinciaId",
+            "municipioId"
+        ]
+    },
+    "update": {
+        "route": "/usuarios/$usuarioId",
+        "method": "PUT",
+        "sql": "UPDATE usuarios SET email = $email, PASSWORD = $PASSWORD, nombre = $nombre, fechaNacimiento = $fechaNacimiento, altura = $altura, peso = $peso, genero = $genero, colorOjos = $colorOjos, colorPelo = $colorPelo, fechaAlta = $fechaAlta, fechaBaja = $fechaBaja, biografia = $biografia, direccion = $direccion, codigoPostalId = $codigoPostalId, provinciaId = $provinciaId, municipioId = $municipioId WHERE usuarioId = $usuarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'usuarios' by its primary key",
+        "request_body_params": [
+            "email",
+            "PASSWORD",
+            "nombre",
+            "fechaNacimiento",
+            "altura",
+            "peso",
+            "genero",
+            "colorOjos",
+            "colorPelo",
+            "fechaAlta",
+            "fechaBaja",
+            "biografia",
+            "direccion",
+            "codigoPostalId",
+            "provinciaId",
+            "municipioId"
+        ]
+    },
+    "delete": {
+        "route": "/usuarios/$usuarioId",
+        "method": "DELETE",
+        "sql": "DELETE FROM usuarios WHERE usuarioId = $usuarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'usuarios' by its primary key"
+    }
+}

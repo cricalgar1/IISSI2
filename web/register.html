@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/register.js" type="module"></script>
+        <script src="js/libs/axios.min.js"></script>
+        <script src="js/funcionesRegister.js" type="module"></script>
+        <link rel="stylesheet" href="/css/style.css">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- Metemos el link para utilizar bootstrap-->
+        <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+        crossorigin="anonymous"
+        />
+        <!--Este link nos permite utilizar los iconos de bootstrap-->
+        <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+        />
+        <title>ISSI2-FRIENDS</title>
+
+        
+        <link rel="icon" href="images\abrazo.png"></link>
+    </head>
+    <body>
+        <div id="errors"></div>
+            <!--Usamos esta clase para crear una barra menu responsivo de color gris -->
+            <nav class="navbar navbar-expand-lg bg-light navbar-light ">
+
+                <!--Creamos un contenedor para que aparezca el logo en una posicion concreta no pegado en la esquina-->
+                <div class="container"> 
+
+                    <!--Esto lo que nos permite es colocar nuestro logo/nombre en la esquina superior izquierda del menu-->
+                    <a href="#" class="navbar-brand">IISSI2-FRIENDS</a>
+
+                    <!--Creamos un boton que serán las tres rayitas que aparecen al hacer pequeño la pagina para el menu-->
+                    <buttom 
+                        class="navbar-toggler"  
+                        type="buttom"   
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#menu"
+                        >
+                        <!--toggle indica qeu queremos que aparezca cuando collapse y target apunta el objeto a colapsar-->
+                        <span class="navbar-toggler-icon"></span>
+                    </buttom>
+
+                    <!--Para hacerla responsiva utilizamos esta clase que nos permite colapsar el menu en tres barritas (metemos id=menu)cuando la pantalla sea pequeña-->
+                    <div class="collapse navbar-collapse" id="menu">
+                
+                        <!--Con esto creamos lo que aparecerá en el menú-->
+                        <ul class="navbar-nav ms-auto">
+
+                            <!--Aqui tenemos una lista por cada elemento que aparece en el menu-->
+                            <li class="nav-item">
+                                <!--Cada elemento de la lista recibirá un link-->
+                                <a href="#registro" class="nav-link">Registro</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="#porqueNosotros" class="nav-link">Porque nosotros</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a href="#sobreNosotros" class="nav-link">Quienes somos</a>
+                            </li>
+                        
+                            <li class="nav-item">
+                                <a href="#funciones" class="nav-link">Funcionalidades</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!--Con esta clase vamos a hacer una seccion superior en la pagina de inicio-->
+            <section class="bg-light text-dark p-5 text-center text-sm-start" id="registro">
+                <!--Creamos un contenedor para meterlo todo dentro-->
+                <div class="container">
+                    <!--Como queremos poner una imagen a un lado y el texto y demas elementos (en pantallas grandes y medianas de ahi sm) creamos dos elementos flex -->
+                    <div class="d-sm-flex align-items-center justify-content-between">
+
+                        <div>
+                            <!--Nuestro título del texto-->
+                            <h1>Conecta con tus amigos. <span class="span text-warning">Regístrate</span> y empieza</h1>
+
+                            <!--El parrafo del texto-->
+                            <p class="lead">
+                                Entabla conversaciones y relaciones. Mira lo que están haciendo tus amigos y sube fotos.
+                            </p>
+
+                            <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#comenzar">Comenzar</button>
+                            <p>¿Tienes una cuenta? <a href="login.html">Entra</a> </p>
+                            
+                            
+                        </div>
+                        <!--Por otro lado la imagen con una esta clase para que ester dentro del contenedor(las imagenes dan problemas)-->
+                        <img class="img-fluid w-50 d-none d-sm-block"  src="images/imagenRegistro2.svg" alt="">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modal del boton para registrarte, enlazamos con el id del boton -->
+            <div class="modal fade" id="comenzar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!--Cabecera del modal con botón de cerrar pestaña-->
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Regístrate en tan solo unos minutos</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <!--Cuerpo del modal donde estrá nuestro formulario-->
+                        <div class="modal-body">
+                            <form id="formulario">
+                                <div class="mb-0">
+                                    <label for="nombre" class="col-form-label">Nombre:</label>
+                                    <input type="text"  name="nombre" class="form-control" id="nombre">
+                                </div>
+
+                                <div class="mb-0">
+                                    <label for="email" class="col-form-label">Email:</label>
+                                    <input type="email"  name="email" class="form-control" id="email">
+                                </div>
+
+                                <div class="mb-0">
+                                    <label for="password" class="col-form-label">Contraseña:</label>
+                                    <input type="password"  name="password" class="form-control" id="password">
+                                </div>
+
+                                <div class="mb-0">
+                                    <label for="direccion" class="col-form-label">Direccion:</label>
+                                    <input type="text"  name="direccion"  id="direccion" class="form-control">
+                                </div>
+
+                                <div class="mb-0">
+                                    <label for="provinciaId" class="col-form-label">¿Cual es tu provincia?</label>
+                                        <select name="provincias" id="provincias" style="width:400px;"> 
+                                            <option value="1">Almeria</option>     
+                                            <option value="2">Cadiz</option>     
+                                            <option value="3">Cordoba</option>     
+                                            <option value="4">Granada</option>     
+                                            <option value="5">Huelva</option>     
+                                            <option value="6">Jaen</option>     
+                                            <option value="7">Malaga</option>     
+                                            <option value="8">Sevilla</option>                                     
+                                        </select>
+                                        <p style="margin-top:20px; margin-bottom:-3px;">Id correspondiente (automático):</p>
+                                        <input type="number" id="provinciaId" name="provinciaId">
+                                </div>
+
+                                <div class="mb-0">
+                                    <div style="margin-top: 50px; margin-bottom: -20px;">
+                                        <button type="button" class="btn btn-primary" id="botonMunicipio" style="width: 200px;">Carga los Municipios de esa provincia</button>
+                                    </div>
+                                    <label for="municipioId" class="col-form-label">Busca el Id de tu municipio e introducelo:</label>
+                                        <select name="municipios" id="municipios" style="width:400px;">                                           
+                                        </select>
+                                        <p style="margin-top:20px; margin-bottom:-3px;">Añade aqui el Id correspondiente:</p>
+                                        <input type="number" id="municipioId" name="municipioId">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="codigoPostal" class="col-form-label" style="border:solid blue; margin-top:50px; margin-bottom:10px;">Introduce tu código postal:</label>
+                                    <input type="text"  name="codigoPostal"  id="codigoPostal" class="form-control" style="width:350px;">
+                                    <label for="codigoPostal" class="col-form-label"> Id código postal: (automático) </label>
+                                    <input type="number"  name="codigoPostalId"  id="codigoPostalId" class="form-control" style="width:100px;">
+                                </div>
+                                    
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="fechaNacimiento" class="col-form-label" style="margin-left:15px;">FechaNacimiento:</label>
+                                    <input type="date"  name="fechaNacimiento"  id="fechaNacimiento" class="form-control" style="width:400px; margin-left:15px;">
+                                    <div id="error_edad" style="margin-left:15px;"></div>
+
+                                </div>
+
+                                <!--Para los atributos enteros los colocamos en una misama fila con el label flotando-->
+                                <div class="row g-2 mb-0">
+                                    <div class="col-md mb-3">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="altura" name="altura"  placeholder="cm" value="170" style="margin-left:15px;">
+                                        <label for="altura" style="margin-left:15px;">Altura</label>
+                                    </div>
+                                    <div id="error_altura" style="margin-left:15px;"></div>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <div class="form-floating">
+                                        <input type="number"   class="form-control" id="peso" name="peso" placeholder="kg" value="50">
+                                        <label for="peso">Peso</label>
+                                        </div>
+                                        <div id="error_peso" style="margin-left:15px;"></div>
+                                    </div>
+                                </div>
+
+
+                                <!--Para los selectores utilizamos esta clase que nos permite poner a la izquierda el atributo y el placeholder-->
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="genero" style="margin-left:15px;">Genero</label>
+                                    <select  class="form-select" id="genero" name="genero">
+                                    <option selected>Elegir...</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Otros">Otros</option>                           
+                                    </select>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="colorOjos" style="margin-left:15px;">Color de Ojos</label>
+                                    <select  class="form-select" id="colorOjos" name="colorOjos">
+                                    <option selected>Elegir...</option>
+                                    <option value="Negro" >Negro</option>
+                                    <option value="Castaño">Castaño</option>
+                                    <option value="Azul">Azul</option>
+                                    <option value="Verde">Verde</option>
+                                    <option value="Gris">Gris</option>                          
+                                    </select>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="colorPelo" style="margin-left:15px;">Color de pelo</label>
+                                    <select  class="form-select" id="colorPelo" name="colorPelo">
+                                        <option value="Negro" selected>Negro</option>
+                                        <option value="Castaño">Castaño</option>
+                                        <option value="Rubio">Rubio</option>
+                                        <option value="Rojo">Rojo</option>
+                                        <option value="Blanco">Blanco</option>
+                                        <option value="Gris">Gris</option>                         
+                                    </select>
+                                </div>
+
+                                <!--Para la biografia utilizamos una clase con el label flotante-->
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" placeholder="Cuentanos sobre ti" id="biografia" name="biografia" style="height: 100px; margin-left:15px; width:450px;"></textarea>
+                                    <label for="biografia" style="margin-left:15px;">Biografia</label>
+                                </div>
+                                
+
+                                <!--Clase footer del modal con los botones de enviar y de cancelar-->
+                                <div class="modal-footer">
+                                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary" id="boton">Enviar</button>
+                                    <!--<button type="submit" class="btn btn-primary">Enviar</button>-->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Creamos la primera seccion que habla un poco del proyecto-->
+            <section id="porqueNosotros" class="p-5 bg-dark text-light">
+                <div class="container">
+                    <div class="row align-items-center justify-content-between">
+                    <div class="col-md p-5">
+                            <h2>Funcionamos en cualquier dispositivo</h2>
+                            <p class="lead">
+                                Prueba a conectarte desde una tablet o el movil
+                            </p>
+                            <p>
+                                Nuestra pagina es capaz de adaptarse a todos los formatos
+                            </p>
+                    </div>
+                    <div class="col-md">
+                        <img src="images/porqueNosotros.svg" class= "img-fluid w-80">
+                    </div> 
+                    </div>
+                </div>
+            </section>
+
+            <!-- Creamos la segunda seccion que habla un poco del grupo y el proyecto-->
+            <section id="sobreNosotros" class="p-5 bg-light text-dark">
+                <div class="container">
+                    <div class="row align-items-center justify-content-between">
+                    <div class="col-md">
+                        <img src="images/sobreNosotros.svg" class="img-fluid w-80">
+                    </div>  
+                    <div class="col-md p-5">
+                            <h2>Sobre Nosotros</h2>
+                            <p class="lead">
+                                Somos un grupo de trabajo que se encarga de 
+                            </p>
+                            <p>
+                                Si te interesa saber mas blablabla
+                            </p>
+                    </div>
+                    </div>
+                </div>
+            </section>
+
+        <!--Creamos una seccion con cajas que nos permiten contar las funcionalidades-->
+            <section id="funciones" class="p-5 bg-light">
+                <div class="container">
+                    <!--Creamos una fila con tres cajas con el etxto centrado-->
+                    <div class="row text-center g-4">
+                        <!--Las clases de las columnas son md porque para pantallas medias y menores se pondran una encima de la otra-->
+                        <div class="col-md">
+                            <div class="card bg-dark text-light">
+                                <img src="images/SubeFotos.svg" class="card-img-top img-fluid p-4" alt="">
+                                <div class="card-body">
+                                    <p class="lead"> <span class="span text-warning">Sube fotos</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="card bg-dark text-light">
+                                <img src="images/hablaAmigos.svg" class="card-img-top img-fluid p-4 w-80" alt="">
+                                <div class="card-body">
+                                    <p class="lead"> <span class="span text-warning">Habla con tus amigos</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="card bg-dark text-light">
+                                <img src="images/conoceGente.svg" class="card-img-top img-fluid p-4 w-80" alt="">
+                                <div class="card-body">
+                                    <p class="lead"> <span class="span text-warning">Conoce gente nueva</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--Footer con botón para ir arriba del todo-->
+            <footer class="p-5 bg-dark text-white text-center position-relative">
+                <div class="container">
+                <p class="lead">Copyright &copy; 2022 IISSI2-FRIENDS</p>
+        
+                <a href="#" class="position-absolute bottom-0 end-0 p-5">
+                    <i class="bi bi-arrow-up-circle h1"></i>
+                </a>
+                </div>
+            </footer>
+
+            <!--Usamos este script para usar algunas funcionalidades de boostrap con js-->
+            <script
+                src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+                crossorigin="anonymous"
+            ></script>
+        
+    </body>
+</html>

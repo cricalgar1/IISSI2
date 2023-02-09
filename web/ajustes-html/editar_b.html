@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script src="/js/libs/bootstrap.min.js"></script>
+    <script src="/js/utils/include.js"></script>
+
+    <script src="/web/js/aficionesAjustes.js" type="module"></script>
+    <script src="/js/libs/axios.min.js"></script>
+
+    <title>IISSI-Friends</title>
+    
+    <link rel="icon" href="\images\abrazo.png"></link>
+
+    <style>
+        .btn{
+            padding: 0px;
+            font-size: auto;
+            border: auto;
+        }
+
+        .btn:hover {
+            background-color: #60a9ee;
+            transition: 0.7s;
+        }
+
+        #form1{
+            column-count: 2;
+            margin-bottom: 5%;
+        }
+
+        #form2{
+            column-count: 3;
+            margin-bottom: 5%;
+        }
+
+        #Select{
+            width: 150px;
+        }
+
+        .form-control{
+            margin-bottom: 5%;
+        }
+
+    
+    </style>
+
+
+    <title>Ajustes</title>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+                <div class="text-center">
+                    <div class="mt-5 border p-4 bg-light shadow rounded" method="post">
+                        <h1>Ajustes de Perfil</h1>
+                        <hr>
+                        <form id="formActualizarPerfil">
+                            <div class="form-group row">
+                                <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="direccion" class="col-sm-2 col-form-label">Direccion</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="biografia" class="col-sm-2 col-form-label">Biografia</label>
+                                <div class="col-sm-10">
+
+                                    <input type="text" class="form-control" id="biografia" name="biografia" placeholder="Biografia" required>
+                                </div>
+                            </div>
+
+                                <div class="form-row" id="form1">
+                                    
+
+                                    <div class="col-auto">
+                                        <div class="input-group mb-2">
+                                            <label for="altura"></label>
+                                            <input type="number" class="form-control" name="altura" id="altura"
+                                                placeholder="altura" required>
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">cm</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="col-auto">
+                                        <div class="input-group mb-2">
+                                            <label for="peso"></label>
+                                            <input type="number" class="form-control" name="peso" id="peso"
+                                                placeholder="Peso" required>    
+                                            <div class="input-group-prepend">                                        
+                                                <div class="input-group-text">kg</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                         
+
+                            
+                                </div>
+                            
+                                <div class="row " >
+                                    <div class="d-flex gap-1 justify-conten-between">                                    
+                                        
+                                        <div class="col-md-4">
+                                            <label for="genero"></label>
+                                            <select class="form-control" id="genero" name="genero">
+                                                <option selected>ColorOjos</option>
+                                                <option value="Masculino">Hombre</option>
+                                                <option value="Femenino">Mujer</option>
+                                                <option value="Otros">Otros</option>
+                                            </select>                                       
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="colorPelo"></label>
+                                            <select class="form-control" id="colorPelo" name="colorPelo">
+                                                <option selected>Color Pelo</option>
+                                                <option value="Negro">Pelo negro</option>
+                                                <option value="Castaño">Pelo castaño</option>
+                                                <option value="Rubio">Pelo rubio</option>
+                                                <option value="Rojo">Pelo rojo</option>
+                                                <option value="Blanco">Pelo blanco</option>
+                                                <option value="Gris">Pelo gris</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="colorojos"></label>
+                                             <select class="form-control"  id="colorOjos" name="colorOjos">
+                                                <option selected>Color Ojos</option>
+                                                <option value="Negro">Ojos negros</option>
+                                                <option value="Castaño">Ojos castaños</option>
+                                                <option value="Azul">Ojos azules</option>
+                                                <option value="Verde">Ojos verdes</option>
+                                                <option value="Gris">ojos grises</option>
+                                            </select>
+                                        </div>
+
+                                    </div>                                    
+
+
+                                </div>
+
+
+                                <div class="row mt-3">
+                                    <button type="submit" class="btn btn-primary" id="botoActualizarPerfil" > Actualizar perfil  </button>
+                                </div>
+                        </form>
+
+                        <form id="formActualizarAficion">
+                            <div class="input-group">
+                                <div  id="divAficiones">
+                                    <div class="form-check form-check-inline">
+
+                                    
+                                    <div id="errors"></div>
+                    
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row mt-0 mb-2">
+                                <button type="submit" class="btn btn-primary" id="botoActualizarAficion" > Actualizar aficiones  </button>
+                            </div>
+                        </form>
+                        
+                        <form id="formAñadirAficion">
+                            <div class="row mt-4 mb-0">
+                                <label for="aficion">
+                                    <input 
+                                    id="aficion"
+                                    name="aficion"
+                                    class="form-control" 
+                                    type="text" 
+                                    placeholder="Nueva aficion">
+                                </label>
+                            </div>
+
+                            <div class="row mt-0 mb-2">
+                                <button type="submit" class="btn btn-primary" id="botonAñadirAficion" >Añadir aficion </button>
+                            </div>
+                        </form>
+                                              
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </body>
+</html>

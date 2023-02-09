@@ -1,0 +1,62 @@
+{
+    "getAll": {
+        "route": "/conversaciones",
+        "method": "GET",
+        "sql": "SELECT * FROM conversaciones",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all conversaciones"
+    },
+    "getById": {
+        "route": "/conversaciones/$conversacionId",
+        "method": "GET",
+        "sql": "SELECT * FROM conversaciones WHERE conversacionId = $conversacionId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'conversaciones' by its primary key"
+    },
+    "create": {
+        "route": "/conversaciones",
+        "method": "POST",
+        "sql": "INSERT INTO conversaciones(vinculoId, fechaInicio, fechaFin) VALUES ($vinculoId, $fechaInicio, $fechaFin)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'conversaciones'",
+        "request_body_params": [
+            "vinculoId",
+            "fechaInicio",
+            "fechaFin"
+        ]
+    },
+    "update": {
+        "route": "/conversaciones/$conversacionId",
+        "method": "PUT",
+        "sql": "UPDATE conversaciones SET vinculoId = $vinculoId, fechaInicio = $fechaInicio, fechaFin = $fechaFin WHERE conversacionId = $conversacionId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'conversaciones' by its primary key",
+        "request_body_params": [
+            "vinculoId",
+            "fechaInicio",
+            "fechaFin"
+        ]
+    },
+    "delete": {
+        "route": "/conversaciones/$conversacionId",
+        "method": "DELETE",
+        "sql": "DELETE FROM conversaciones WHERE conversacionId = $conversacionId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'conversaciones' by its primary key"
+    }
+}

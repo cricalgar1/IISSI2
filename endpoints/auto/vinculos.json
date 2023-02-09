@@ -1,0 +1,64 @@
+{
+    "getAll": {
+        "route": "/vinculos",
+        "method": "GET",
+        "sql": "SELECT * FROM vinculos",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all vinculos"
+    },
+    "getById": {
+        "route": "/vinculos/$vinculoId",
+        "method": "GET",
+        "sql": "SELECT * FROM vinculos WHERE vinculoId = $vinculoId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'vinculos' by its primary key"
+    },
+    "create": {
+        "route": "/vinculos",
+        "method": "POST",
+        "sql": "INSERT INTO vinculos(activo, fecha, fechaAceptacion, fechaRevocacion) VALUES ($activo, $fecha, $fechaAceptacion, $fechaRevocacion)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'vinculos'",
+        "request_body_params": [
+            "activo",
+            "fecha",
+            "fechaAceptacion",
+            "fechaRevocacion"
+        ]
+    },
+    "update": {
+        "route": "/vinculos/$vinculoId",
+        "method": "PUT",
+        "sql": "UPDATE vinculos SET activo = $activo, fecha = $fecha, fechaAceptacion = $fechaAceptacion, fechaRevocacion = $fechaRevocacion WHERE vinculoId = $vinculoId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'vinculos' by its primary key",
+        "request_body_params": [
+            "activo",
+            "fecha",
+            "fechaAceptacion",
+            "fechaRevocacion"
+        ]
+    },
+    "delete": {
+        "route": "/vinculos/$vinculoId",
+        "method": "DELETE",
+        "sql": "DELETE FROM vinculos WHERE vinculoId = $vinculoId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'vinculos' by its primary key"
+    }
+}

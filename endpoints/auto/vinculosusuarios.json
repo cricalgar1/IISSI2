@@ -1,0 +1,62 @@
+{
+    "getAll": {
+        "route": "/vinculosusuarios",
+        "method": "GET",
+        "sql": "SELECT * FROM vinculosusuarios",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all vinculosusuarios"
+    },
+    "getById": {
+        "route": "/vinculosusuarios/$vinculoUsuarioId",
+        "method": "GET",
+        "sql": "SELECT * FROM vinculosusuarios WHERE vinculoUsuarioId = $vinculoUsuarioId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'vinculosusuarios' by its primary key"
+    },
+    "create": {
+        "route": "/vinculosusuarios",
+        "method": "POST",
+        "sql": "INSERT INTO vinculosusuarios(vinculoId, emisorId, receptorId) VALUES ($vinculoId, $emisorId, $receptorId)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'vinculosusuarios'",
+        "request_body_params": [
+            "vinculoId",
+            "emisorId",
+            "receptorId"
+        ]
+    },
+    "update": {
+        "route": "/vinculosusuarios/$vinculoUsuarioId",
+        "method": "PUT",
+        "sql": "UPDATE vinculosusuarios SET vinculoId = $vinculoId, emisorId = $emisorId, receptorId = $receptorId WHERE vinculoUsuarioId = $vinculoUsuarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'vinculosusuarios' by its primary key",
+        "request_body_params": [
+            "vinculoId",
+            "emisorId",
+            "receptorId"
+        ]
+    },
+    "delete": {
+        "route": "/vinculosusuarios/$vinculoUsuarioId",
+        "method": "DELETE",
+        "sql": "DELETE FROM vinculosusuarios WHERE vinculoUsuarioId = $vinculoUsuarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'vinculosusuarios' by its primary key"
+    }
+}

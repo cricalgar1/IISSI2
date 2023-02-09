@@ -1,0 +1,60 @@
+{
+    "getAll": {
+        "route": "/municipios",
+        "method": "GET",
+        "sql": "SELECT * FROM municipios",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all municipios"
+    },
+    "getById": {
+        "route": "/municipios/$municipioId",
+        "method": "GET",
+        "sql": "SELECT * FROM municipios WHERE municipioId = $municipioId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'municipios' by its primary key"
+    },
+    "create": {
+        "route": "/municipios",
+        "method": "POST",
+        "sql": "INSERT INTO municipios(provinciaId, nombreMunicipio) VALUES ($provinciaId, $nombreMunicipio)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'municipios'",
+        "request_body_params": [
+            "provinciaId",
+            "nombreMunicipio"
+        ]
+    },
+    "update": {
+        "route": "/municipios/$municipioId",
+        "method": "PUT",
+        "sql": "UPDATE municipios SET provinciaId = $provinciaId, nombreMunicipio = $nombreMunicipio WHERE municipioId = $municipioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'municipios' by its primary key",
+        "request_body_params": [
+            "provinciaId",
+            "nombreMunicipio"
+        ]
+    },
+    "delete": {
+        "route": "/municipios/$municipioId",
+        "method": "DELETE",
+        "sql": "DELETE FROM municipios WHERE municipioId = $municipioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'municipios' by its primary key"
+    }
+}

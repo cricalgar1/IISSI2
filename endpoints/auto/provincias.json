@@ -1,0 +1,58 @@
+{
+    "getAll": {
+        "route": "/provincias",
+        "method": "GET",
+        "sql": "SELECT * FROM provincias",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all provincias"
+    },
+    "getById": {
+        "route": "/provincias/$provinciaId",
+        "method": "GET",
+        "sql": "SELECT * FROM provincias WHERE provinciaId = $provinciaId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'provincias' by its primary key"
+    },
+    "create": {
+        "route": "/provincias",
+        "method": "POST",
+        "sql": "INSERT INTO provincias(nombreProvincia) VALUES ($nombreProvincia)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'provincias'",
+        "request_body_params": [
+            "nombreProvincia"
+        ]
+    },
+    "update": {
+        "route": "/provincias/$provinciaId",
+        "method": "PUT",
+        "sql": "UPDATE provincias SET nombreProvincia = $nombreProvincia WHERE provinciaId = $provinciaId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'provincias' by its primary key",
+        "request_body_params": [
+            "nombreProvincia"
+        ]
+    },
+    "delete": {
+        "route": "/provincias/$provinciaId",
+        "method": "DELETE",
+        "sql": "DELETE FROM provincias WHERE provinciaId = $provinciaId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'provincias' by its primary key"
+    }
+}

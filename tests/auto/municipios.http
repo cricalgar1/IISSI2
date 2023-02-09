@@ -1,0 +1,132 @@
+
+### THIS IS AN AUTO-GENERATED TEST SUITE, IT NEEDS TO BE COMPLETED WITH VALID DATA
+### THESE ARE NOT ALL YOU NEED, MORE OF THEM MUST BE CREATED TO EVALUATE THE FUNCTIONAL
+### REQUIREMENTS OF THE PROJECT AT HAND, THESE TEST ONLY TEST THE CRUD PORTION OF THE ENTITY.
+### Silence is a DEAL research team project, more info about us in https://deal.us.es
+@BASE = http://127.0.0.1:8080/api/v1
+
+### Auxiliary query
+### Positive test
+### Test 00: Get all existing municipios
+### This query is used in several of the below tests it should be executed first.
+# @name municipios
+GET {{BASE}}/municipios
+
+### Login a(n) usuarios and save the generated token 
+### This token is used in several of the below tests it should be executed second.
+# @name login
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{ 
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###
+}
+
+###
+@token = {{login.response.body.sessionToken}}
+
+
+### TESTS BEGIN
+
+### Test 01: Get one existing municipios by its id.
+### positive test 
+@munId = {{municipios.response.body.0.municipioId}}
+GET {{BASE}}/municipios/{{munId}} 
+Content-Type: application/json 
+
+
+### Test 02: Try get one existing municipios by its nonexistent id.
+### negative test 
+GET {{BASE}}/municipios/999999999
+Content-Type: application/json 
+
+
+### Test 03: Add a new municipios successfully
+### Positive test 
+### We assume that the token has been aquired by the login request.
+# @name newmunicipios
+POST {{BASE}}/municipios 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"provinciaId": ###REPLACE###,
+	"nombreMunicipio": ###REPLACE###
+} 
+
+### Check the created municipios
+
+@newmunicipiosid = {{newmunicipios.response.body.lastId}}
+GET {{BASE}}/municipios/{{newmunicipiosid}}
+Content-Type: application/json 
+
+### Test 04: Add a new municipios without a session token
+### Negative test 
+POST {{BASE}}/municipios 
+Content-Type: application/json 
+
+{ 
+	"provinciaId": ###REPLACE###,
+	"nombreMunicipio": ###REPLACE###
+}
+
+### Test 05: Modify an existing municipios 
+### Positive test 
+@munId = {{municipios.response.body.0.municipioId}} 
+PUT {{BASE}}/municipios/{{munId}} 
+Content-Type: application/json 
+Token: {{token}} 
+
+{ 
+	"provinciaId": ###REPLACE###,
+	"nombreMunicipio": ###REPLACE###
+}
+
+### Check the modified municipios
+
+GET {{BASE}}/municipios/{{newmunicipiosid}}
+Content-Type: application/json 
+
+### Test 06: Try to modify an existing municipios without a session token
+### Negative test
+@munId = {{municipios.response.body.0.municipioId}}
+PUT {{BASE}}/municipios/{{munId}}
+Content-Type: application/json
+
+{
+	"provinciaId": ###REPLACE###,
+	"nombreMunicipio": ###REPLACE###
+}
+
+### Test 07: Delete an existing municipios
+### Positive test
+
+### Create a new municipios, which we will delete
+# @name createdmunToDelete
+POST {{BASE}}/municipios
+Content-Type: application/json
+Token: {{token}}
+
+{
+	"provinciaId": ###REPLACE###,
+	"nombreMunicipio": ###REPLACE###
+}
+
+### Check the created municipios
+@mundelId = {{createdmunToDelete.response.body.lastId}}
+GET {{BASE}}/municipios/{{mundelId}}
+Content-Type: application/json 
+
+### Delete the municipios
+DELETE {{BASE}}/municipios/{{mundelId}}
+Token: {{token}}
+
+### Check the deleted municipios
+GET {{BASE}}/municipios/{{mundelId}}
+Content-Type: application/json 
+
+### Test 08: Try to delete a municipios without a session token
+### Negative test
+DELETE {{BASE}}/municipios/{{munId}}
+

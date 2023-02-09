@@ -1,0 +1,132 @@
+
+### THIS IS AN AUTO-GENERATED TEST SUITE, IT NEEDS TO BE COMPLETED WITH VALID DATA
+### THESE ARE NOT ALL YOU NEED, MORE OF THEM MUST BE CREATED TO EVALUATE THE FUNCTIONAL
+### REQUIREMENTS OF THE PROJECT AT HAND, THESE TEST ONLY TEST THE CRUD PORTION OF THE ENTITY.
+### Silence is a DEAL research team project, more info about us in https://deal.us.es
+@BASE = http://127.0.0.1:8080/api/v1
+
+### Auxiliary query
+### Positive test
+### Test 00: Get all existing codigospostales
+### This query is used in several of the below tests it should be executed first.
+# @name codigospostales
+GET {{BASE}}/codigospostales
+
+### Login a(n) usuarios and save the generated token 
+### This token is used in several of the below tests it should be executed second.
+# @name login
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{ 
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###
+}
+
+###
+@token = {{login.response.body.sessionToken}}
+
+
+### TESTS BEGIN
+
+### Test 01: Get one existing codigospostales by its id.
+### positive test 
+@codId = {{codigospostales.response.body.0.codigoPostaldId}}
+GET {{BASE}}/codigospostales/{{codId}} 
+Content-Type: application/json 
+
+
+### Test 02: Try get one existing codigospostales by its nonexistent id.
+### negative test 
+GET {{BASE}}/codigospostales/999999999
+Content-Type: application/json 
+
+
+### Test 03: Add a new codigospostales successfully
+### Positive test 
+### We assume that the token has been aquired by the login request.
+# @name newcodigospostales
+POST {{BASE}}/codigospostales 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"municipioId": ###REPLACE###,
+	"codigoPostal": ###REPLACE###
+} 
+
+### Check the created codigospostales
+
+@newcodigospostalesid = {{newcodigospostales.response.body.lastId}}
+GET {{BASE}}/codigospostales/{{newcodigospostalesid}}
+Content-Type: application/json 
+
+### Test 04: Add a new codigospostales without a session token
+### Negative test 
+POST {{BASE}}/codigospostales 
+Content-Type: application/json 
+
+{ 
+	"municipioId": ###REPLACE###,
+	"codigoPostal": ###REPLACE###
+}
+
+### Test 05: Modify an existing codigospostales 
+### Positive test 
+@codId = {{codigospostales.response.body.0.codigoPostaldId}} 
+PUT {{BASE}}/codigospostales/{{codId}} 
+Content-Type: application/json 
+Token: {{token}} 
+
+{ 
+	"municipioId": ###REPLACE###,
+	"codigoPostal": ###REPLACE###
+}
+
+### Check the modified codigospostales
+
+GET {{BASE}}/codigospostales/{{newcodigospostalesid}}
+Content-Type: application/json 
+
+### Test 06: Try to modify an existing codigospostales without a session token
+### Negative test
+@codId = {{codigospostales.response.body.0.codigoPostaldId}}
+PUT {{BASE}}/codigospostales/{{codId}}
+Content-Type: application/json
+
+{
+	"municipioId": ###REPLACE###,
+	"codigoPostal": ###REPLACE###
+}
+
+### Test 07: Delete an existing codigospostales
+### Positive test
+
+### Create a new codigospostales, which we will delete
+# @name createdcodToDelete
+POST {{BASE}}/codigospostales
+Content-Type: application/json
+Token: {{token}}
+
+{
+	"municipioId": ###REPLACE###,
+	"codigoPostal": ###REPLACE###
+}
+
+### Check the created codigospostales
+@coddelId = {{createdcodToDelete.response.body.lastId}}
+GET {{BASE}}/codigospostales/{{coddelId}}
+Content-Type: application/json 
+
+### Delete the codigospostales
+DELETE {{BASE}}/codigospostales/{{coddelId}}
+Token: {{token}}
+
+### Check the deleted codigospostales
+GET {{BASE}}/codigospostales/{{coddelId}}
+Content-Type: application/json 
+
+### Test 08: Try to delete a codigospostales without a session token
+### Negative test
+DELETE {{BASE}}/codigospostales/{{codId}}
+

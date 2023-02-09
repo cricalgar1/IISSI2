@@ -1,0 +1,137 @@
+
+### THIS IS AN AUTO-GENERATED TEST SUITE, IT NEEDS TO BE COMPLETED WITH VALID DATA
+### THESE ARE NOT ALL YOU NEED, MORE OF THEM MUST BE CREATED TO EVALUATE THE FUNCTIONAL
+### REQUIREMENTS OF THE PROJECT AT HAND, THESE TEST ONLY TEST THE CRUD PORTION OF THE ENTITY.
+### Silence is a DEAL research team project, more info about us in https://deal.us.es
+@BASE = http://127.0.0.1:8080/api/v1
+
+### Auxiliary query
+### Positive test
+### Test 00: Get all existing vinculosusuarios
+### This query is used in several of the below tests it should be executed first.
+# @name vinculosusuarios
+GET {{BASE}}/vinculosusuarios
+
+### Login a(n) usuarios and save the generated token 
+### This token is used in several of the below tests it should be executed second.
+# @name login
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{ 
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###
+}
+
+###
+@token = {{login.response.body.sessionToken}}
+
+
+### TESTS BEGIN
+
+### Test 01: Get one existing vinculosusuarios by its id.
+### positive test 
+@vinId = {{vinculosusuarios.response.body.0.vinculoUsuarioId}}
+GET {{BASE}}/vinculosusuarios/{{vinId}} 
+Content-Type: application/json 
+
+
+### Test 02: Try get one existing vinculosusuarios by its nonexistent id.
+### negative test 
+GET {{BASE}}/vinculosusuarios/999999999
+Content-Type: application/json 
+
+
+### Test 03: Add a new vinculosusuarios successfully
+### Positive test 
+### We assume that the token has been aquired by the login request.
+# @name newvinculosusuarios
+POST {{BASE}}/vinculosusuarios 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"vinculoId": ###REPLACE###,
+	"emisorId": ###REPLACE###,
+	"receptorId": ###REPLACE###
+} 
+
+### Check the created vinculosusuarios
+
+@newvinculosusuariosid = {{newvinculosusuarios.response.body.lastId}}
+GET {{BASE}}/vinculosusuarios/{{newvinculosusuariosid}}
+Content-Type: application/json 
+
+### Test 04: Add a new vinculosusuarios without a session token
+### Negative test 
+POST {{BASE}}/vinculosusuarios 
+Content-Type: application/json 
+
+{ 
+	"vinculoId": ###REPLACE###,
+	"emisorId": ###REPLACE###,
+	"receptorId": ###REPLACE###
+}
+
+### Test 05: Modify an existing vinculosusuarios 
+### Positive test 
+@vinId = {{vinculosusuarios.response.body.0.vinculoUsuarioId}} 
+PUT {{BASE}}/vinculosusuarios/{{vinId}} 
+Content-Type: application/json 
+Token: {{token}} 
+
+{ 
+	"vinculoId": ###REPLACE###,
+	"emisorId": ###REPLACE###,
+	"receptorId": ###REPLACE###
+}
+
+### Check the modified vinculosusuarios
+
+GET {{BASE}}/vinculosusuarios/{{newvinculosusuariosid}}
+Content-Type: application/json 
+
+### Test 06: Try to modify an existing vinculosusuarios without a session token
+### Negative test
+@vinId = {{vinculosusuarios.response.body.0.vinculoUsuarioId}}
+PUT {{BASE}}/vinculosusuarios/{{vinId}}
+Content-Type: application/json
+
+{
+	"vinculoId": ###REPLACE###,
+	"emisorId": ###REPLACE###,
+	"receptorId": ###REPLACE###
+}
+
+### Test 07: Delete an existing vinculosusuarios
+### Positive test
+
+### Create a new vinculosusuarios, which we will delete
+# @name createdvinToDelete
+POST {{BASE}}/vinculosusuarios
+Content-Type: application/json
+Token: {{token}}
+
+{
+	"vinculoId": ###REPLACE###,
+	"emisorId": ###REPLACE###,
+	"receptorId": ###REPLACE###
+}
+
+### Check the created vinculosusuarios
+@vindelId = {{createdvinToDelete.response.body.lastId}}
+GET {{BASE}}/vinculosusuarios/{{vindelId}}
+Content-Type: application/json 
+
+### Delete the vinculosusuarios
+DELETE {{BASE}}/vinculosusuarios/{{vindelId}}
+Token: {{token}}
+
+### Check the deleted vinculosusuarios
+GET {{BASE}}/vinculosusuarios/{{vindelId}}
+Content-Type: application/json 
+
+### Test 08: Try to delete a vinculosusuarios without a session token
+### Negative test
+DELETE {{BASE}}/vinculosusuarios/{{vinId}}
+

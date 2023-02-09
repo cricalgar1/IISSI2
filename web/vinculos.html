@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <script src="/js/libs/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="js/utils/include.js"></script>
+
+    <title>IISSI-Friends</title>
+
+    <script src="/web/js/vinculos.js" type="module"></script>
+    <script src="js/libs/axios.min.js"></script>
+
+    <link rel="icon" href="images\abrazo.png">
+    </link>
+
+
+</head>
+
+<body class="bg-light"> 
+
+    <div class="bg-light">
+        <div class="container">
+            <header class="d-flex justify-content-center sticky-top py-3">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="feed.html" class="nav-link" aria-current="page">Feed</a></li>
+                    <li class="nav-item"><a href="busqueda.html" class="nav-link">Búsqueda</a></li>
+                    <li class="nav-item"><a href="perfil2.html" class="nav-link">Perfil</a></li>
+                    <li class="nav-item"><a href="vinculos.html" class="nav-link active">Vinculos</a></li>
+                    <li class="nav-item"><a href="/web/ajustes-html/ajuste_blanco.html" class="nav-link">Ajustes</a></li>
+                </ul>
+            </header>
+        </div>
+    </div>
+
+    <div class="bg-light">
+        <div class="container">
+            <header class="d-flex justify-content-center sticky-top py-3">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="vinculos.html" class="nav-link active" aria-current="page">Activos</a></li>
+                    <li class="nav-item"><a href="solicitudes.html" class="nav-link">Solicitudes</a></li>
+                    <li class="nav-item"><a href="historicos.html" class="nav-link">Revocados</a></li>
+                </ul>
+            </header>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="bg-light" style="display: block">
+        <div class="container" id="usuarioVinc">
+
+            <div id="errors"></div>
+
+            <div class="container" id="modales"></div>
+
+            
+        </div>
+
+        <br>
+
+        <div class="botonEnv text-center" id="enviar sol">
+            <button type="button" class="btn btn-primary" id="botonEnviar" data-bs-toggle="modal" data-bs-target="#añadir">Enviar solicitud</button>
+
+            <footer class="p-5 bg-dark text-white text-center position-relative">
+                <div class="container">
+                  <p class="lead">Copyright &copy; 2022 IISSI2-FRIENDS <br> Evaluación a optar: Notable</p>
+                </div>
+            </footer>
+        </div>
+
+    </div>
+
+</body>

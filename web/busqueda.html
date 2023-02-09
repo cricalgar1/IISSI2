@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/css/fotoStyle.css">
+
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script src="/js/libs/jquery-3.4.1.min.js"></script>
+    <script src="/js/libs/popper.min.js"></script>
+    <script src="/js/libs/bootstrap.min.js"></script>
+    <script src="/js/utils/include.js"></script>
+
+
+
+    <link href="https://unpkg.com/bootstrap@3.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/bootstrap@3.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-multiselect@0.9.13/dist/js/bootstrap-multiselect.js"></script>
+    <link href="https://unpkg.com/bootstrap-multiselect@0.9.13/dist/css/bootstrap-multiselect.css" rel="stylesheet"/>
+
+    <title>IISSI-Friends</title>
+    
+    <script src="/web/js/busqueda.js" type="module"></script>
+    <script src="js/libs/axios.min.js"></script>
+
+    <script type = "module"> 
+      import {cargaU} from "/web/js/buscar.js";
+      window.cargaU = cargaU;
+    </script>
+
+    <script type ="module">
+      import {buscarU} from "/web/js/buscar_usuario.js";
+      window.buscarU = buscarU;
+    </script>
+
+
+    <link rel="icon" href="images\abrazo.png"></link>
+    
+    <script type="text/javascript">
+
+      $(function() {
+          
+          $('#chkveg0').multiselect({
+              
+              includeSelectAllOption: true
+          });
+          
+          $('#btnget').click(function(){
+              
+            alert($('#chkveg0').val());
+          });
+      });
+      
+    </script>
+
+
+    <script type="text/javascript">
+
+      $(function() {
+          
+          $('#chkveg1').multiselect({
+              
+              includeSelectAllOption: true
+          });
+          
+          $('#btnget').click(function(){
+              
+              //alert($('#chkveg1').val());
+          });
+      });
+      
+    </script>
+
+    <script type="text/javascript">
+
+      $(function() {
+          
+          $('#chkveg2').multiselect({
+              
+              includeSelectAllOption: true
+          });
+          
+          $('#btnget').click(function(){
+              
+              //alert($('#chkveg2').val());
+          });
+      });
+      
+    </script>
+    <script type="text/javascript">
+
+      $(function() {
+          
+          $('#chkveg3').multiselect({
+              
+              includeSelectAllOption: true
+          });
+          
+          $('#btnget').click(function(){
+              
+              //alert($('#chkveg3').val());
+          });
+      });
+      
+    </script>
+
+<script type="text/javascript">
+
+  $(function() {
+      
+      $('#chkveg4').multiselect({
+          
+          includeSelectAllOption: true
+      });
+      
+      $('#btnget').click(function(){
+          
+          //alert($('#chkveg4').val());
+      });
+  });
+  
+</script>
+
+<script type="text/javascript">
+
+  $(function() {
+      
+      $('#chkveg5').multiselect({
+          
+          includeSelectAllOption: true
+      });
+      
+      $('#btnget').click(function(){
+          
+          //alert($('#chkveg4').val());
+      });
+  });
+  
+</script>
+
+
+<script type="text/javascript">
+
+  $(function() {
+      
+      $('#chkveg6').multiselect({
+          
+          includeSelectAllOption: true
+      });
+  });
+  
+</script>
+
+  <style>
+    body{
+      min-height: 100vh; 
+      max-height: fit-content;
+      background-repeat: no-repeat;
+      background-size:cover;
+      margin: 0; 
+  
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    footer{ 
+      min-height:50px; 
+    }
+    .parent {
+      margin: 1rem;
+      padding: 2rem 2rem;
+      text-align: center;
+    }
+    .child {
+      display: inline-block;
+      padding: 1rem 1rem;
+      vertical-align: middle;
+    }
+    .card{
+      width: 70%;
+      text-align: center;
+      margin: 10%;
+      padding-right: 10%;
+      border-radius: 5px 5px 0 0;
+    }
+    .body{
+      padding: 5%;
+    }
+
+  </style>
+
+    <title>Búsqueda</title>
+    </head>
+    <!--<body background="images/busqueda.svg">-->
+      <body>
+        <div class="bg-light">
+          <div class="container">
+              <header class="d-flex justify-content-center sticky-top py-3">
+                  <ul class="nav nav-pills">
+                      <li class="nav-item"><a href="feed.html" class="nav-link">Feed</a></li>
+                      <li class="nav-item"><a href="busqueda.html" class="nav-link  active" aria-current="page">Búsqueda</a></li>
+                      <li class="nav-item" id="perfil"><a href="perfil2.html" class="nav-link">Perfil</a></li>
+                      <li class="nav-item"><a href="vinculos.html" class="nav-link">Vinculos</a></li>
+                      <li class="nav-item"><a href="/web/ajustes-html/ajuste_blanco.html" class="nav-link">Ajustes</a></li>
+                  </ul>
+              </header>
+          </div>
+      </div>
+      <div class ="bg-light">
+        <div class="container">
+          <div class="text-center">
+            <p></p>
+            <input type="text" id="inputFiltro" placeholder="Nombre de usuario..." onkeyup="buscarU()">
+            <div class = "parent">
+              <div class='child'>
+                <select id="chkveg0" multiple>
+                  <option value="11">Menor de 20 años</option>
+                  <option value="21">20-30 años</option>
+                  <option value="31">30-40 años</option>
+                  <option value="41">40-50 años</option>
+                  <option value="51">Mayor de 50 años</option>
+                </select>
+            </div>
+            <div class='child'>
+                  <select id="chkveg1" multiple>
+                    <option value="Masculino">Hombre</option>
+                    <option value="Femenino">Mujer</option>
+                    <option value="Otros">Otro</option>     
+                  </select>
+            </div>
+            <div class='child'>
+                  <select id="chkveg2" multiple="multiple">
+                    <option value='Negro'>Ojos negros</option>
+                    <option value='Castaño'>Ojos castaños</option>
+                    <option value='Azul'>Ojos azules</option>
+                    <option value='Verde'>Ojos verdes</option>
+                    <option value='Gris'>ojos grises</option>
+                  </select>
+            </div>
+            <div class='child'>
+                  <select id="chkveg3" multiple="multiple" >
+                    <option value="Negro">Pelo negro</option>
+                    <option value="Castaño">Pelo castaño</option>
+                    <option value="Rubio">Pelo rubio</option>
+                    <option value="Rojo">Pelo rojo</option>
+                    <option value="Blanco">Pelo blanco</option>
+                    <option value="Gris">Pelo gris</option>
+                  </select>
+            </div>
+            <div class='child'>
+                  <select id="chkveg4" multiple="multiple">
+                    <option value="151">Por debajo de 160cm </option>
+                    <option value="161">160-170 cm</option>
+                    <option value="171">170-180 cm</option>
+                    <option value="181">180-190 cm</option>
+                    <option value="191">190-200 cm</option>
+                    <option value="201">Por encima de 200cm</option>
+                  </select>
+            </div>
+            <div class='child'>
+                  <select id="chkveg5" multiple="multiple">
+                    <option value="40.0">Menos de 50kg </option>
+                    <option value="50.0">50-60 kg</option>
+                    <option value="60.0">60-70 kg</option>
+                    <option value="70.0">70-80 kg</option>
+                    <option value="80.0">80-90 kg</option>
+                    <option value="90.0">90-100 kg</option>
+                    <option value="100.1">Más de 100 kg</option>
+                  </select>
+            </div>
+            <div class='child'>
+                  <select id="chkveg6" multiple>
+                    <option value="1">Distancia Cerca</option>
+                    <option value="3">Distancia Media</option>
+                    <option value="5">Distancia Lejos</option>
+                  </select>
+            </div>
+            </div>
+          <button onclick="cargaU()" class="btn btn-primary">Buscar</button>
+          <p></p> 
+        </div>
+          
+        </div>
+          <div  id = "hola">
+            <!--Usuarios-->
+          </div>
+        </div>
+        <footer class="p-5 bg-dark text-white text-center position-relative">
+          <div class="container">
+            <p class="lead">Copyright &copy; 2022 IISSI2-FRIENDS <br> Evaluación a optar: Notable</p>
+          </div>
+        </footer>
+      </div>
+    </body>
+      
+</html>
+
+<!--
+  <input type="button" id="btnget" value="Buscar por los valores seleccionados" />
+
+    <div class="text-center">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+
+-->

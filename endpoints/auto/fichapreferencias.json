@@ -1,0 +1,72 @@
+{
+    "getAll": {
+        "route": "/fichapreferencias",
+        "method": "GET",
+        "sql": "SELECT * FROM fichapreferencias",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all fichapreferencias"
+    },
+    "getById": {
+        "route": "/fichapreferencias/$fichaPreferenciaId",
+        "method": "GET",
+        "sql": "SELECT * FROM fichapreferencias WHERE fichaPreferenciaId = $fichaPreferenciaId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'fichapreferencias' by its primary key"
+    },
+    "create": {
+        "route": "/fichapreferencias",
+        "method": "POST",
+        "sql": "INSERT INTO fichapreferencias(usuarioId, rangoEdad, rangoEstatura, rangoPeso, filtroGenero, filtroOjo, filtroColorPelo, ubicacion) VALUES ($usuarioId, $rangoEdad, $rangoEstatura, $rangoPeso, $filtroGenero, $filtroOjo, $filtroColorPelo, $ubicacion)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'fichapreferencias'",
+        "request_body_params": [
+            "usuarioId",
+            "rangoEdad",
+            "rangoEstatura",
+            "rangoPeso",
+            "filtroGenero",
+            "filtroOjo",
+            "filtroColorPelo",
+            "ubicacion"
+        ]
+    },
+    "update": {
+        "route": "/fichapreferencias/$fichaPreferenciaId",
+        "method": "PUT",
+        "sql": "UPDATE fichapreferencias SET usuarioId = $usuarioId, rangoEdad = $rangoEdad, rangoEstatura = $rangoEstatura, rangoPeso = $rangoPeso, filtroGenero = $filtroGenero, filtroOjo = $filtroOjo, filtroColorPelo = $filtroColorPelo, ubicacion = $ubicacion WHERE fichaPreferenciaId = $fichaPreferenciaId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'fichapreferencias' by its primary key",
+        "request_body_params": [
+            "usuarioId",
+            "rangoEdad",
+            "rangoEstatura",
+            "rangoPeso",
+            "filtroGenero",
+            "filtroOjo",
+            "filtroColorPelo",
+            "ubicacion"
+        ]
+    },
+    "delete": {
+        "route": "/fichapreferencias/$fichaPreferenciaId",
+        "method": "DELETE",
+        "sql": "DELETE FROM fichapreferencias WHERE fichaPreferenciaId = $fichaPreferenciaId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'fichapreferencias' by its primary key"
+    }
+}
